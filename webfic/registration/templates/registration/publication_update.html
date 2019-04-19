@@ -1,0 +1,53 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}Editar Reporte{% endblock %}
+{% block content %}
+
+<main role="main">
+  <div class="container bg-3">
+    <div class="row mt-3 mb-5">
+      <div class="col-md-9 mx-auto">
+        <h3>Reporte</h3>
+        
+       
+                  
+          <h3>{{publication.user}}</h3>
+
+          <p>  <a href=" {{publication.imagen.url}}"> Imagen </a></p>
+              
+              <h6>LATITUD:</h6>
+              {% if publication.latitud %}<p>{{publication.latitud}}</p>{% endif %}
+              <h6>LONGITUD:</h6>
+              {% if publication.longitud %}<p>{{publication.longitud}}</p>{% endif %}
+              <h6>FECHA EN QUE SE ENVIO:</h6>
+              {% if publication.fecha_envio %}<p>{{publication.fecha_envio}}</p>{% endif %}
+              <h6>FECHA EN QUE SE REALIZO LA FOTO:</h6>
+              {% if publication.fecha_creacion %}<p>{{publication.fecha_creacion}}</p>{% endif %}
+               <h6>HORA EN QUE SE REALIZO LA FOTO:</h6>
+              {% if publication.hora_creacion %}<p>{{publication.hora_creacion}}</p>{% endif %}
+               <h6>MODELO DE CELULAR:</h6>
+              {% if publication.modelo_cel %}<p>{{publication.modelo_cel}}</p>{% endif %}
+               <h6>ESTATUS:</h6>
+               {% if publication.estatus %}<p>{{publication.estatus}}</p>{% endif %}
+
+        <form action="" method="post" >{% csrf_token %}
+           
+            
+         
+
+         
+            <h6>CAMBIAR ESTATUS:</h6>
+          {{ form.status }}
+             <br>
+          <div class="text-center">
+            <input type="submit" class="btn btn-primary btn-block" value="Enviar" />
+          </div>
+        </form>
+
+
+
+      </div>
+    </div>
+  </div>
+</main>
+{% endblock %}

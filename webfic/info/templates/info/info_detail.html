@@ -1,0 +1,82 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}{{publication.user}}{% endblock %}
+{% block content %}
+
+<main role="main">
+
+  <div class="container bg-3" >
+    <div class="row mt-3">
+      <div class="col-md-9 mx-auto mb-5">
+        <form action="" method="post" enctype="multipart/form-data">{% csrf_token %}
+          <div class="row">
+            
+            <!-- Campos -->
+            <div class="col-md-10">
+             
+
+              
+               <h4>{% if publication.title %}<p>{{publication.title}}</p>{% endif %}
+
+
+                
+
+
+               </h4>
+               
+
+                  <p class="profile-data">
+                    
+                    <a href="{% url 'profiles:detail' publication.user %}"> Autor: {{publication.user}}</a> | {{publication.created}}  {% with user.get_username|slugify as total %}
+             
+                 {% with publication.user|slugify as tot %}
+                     
+                     {% if total == tot %}
+                 
+                | <a href="{% url 'publication' user.get_username publication.id %}">editar</a>
+               
+                   
+                     {% else %}
+                     
+
+                       {% endif %}
+
+                  {% endwith %}
+                      
+                  {% endwith %}
+                  </p>           
+
+
+                    {{publication.content|safe}}
+
+                     {% if publication.imagen %}
+                      <img src="{{publication.imagen.url}}" class="rounded mx-auto d-block" alt="Bird" width="250" height="250" ><br>
+
+                      {% else %}
+                     
+                      {% endif %}
+                                       
+
+                    {% if publication.upload %}
+               <br> <p>  <a href="  {{publication.upload.url}}"> Documento completo para descargar </a></p>
+                  
+              {% else %}
+
+               <p>  No existe documento </p>
+                
+              {% endif %}
+
+                    
+                   
+
+                  
+
+
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</main>
+{% endblock %}

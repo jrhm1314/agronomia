@@ -1,0 +1,57 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}{{profile.user}}{% endblock %}
+{% block content %}
+<main role="main">
+  <div class="container">
+    <div class="row mt-3">
+      <div class="col-md-9 mx-auto mb-5">
+        
+        <form action="" method="post" enctype="multipart/form-data">{% csrf_token %}
+          <div class="row">
+
+             
+
+            <!-- Avatar -->
+            <div class="col-md-2">
+              {% if profile.avatar %}
+                <img src="{{profile.avatar.url}}" class="img-fluid">
+              {% else %}
+                <img src="{% static 'registration/img/no-avatar.jpg' %}" class="img-fluid">
+              {% endif %}
+            </div>
+            <!-- Campos -->
+            <div class="col-md-10">
+              <h3>{{profile.user}}</h3>
+              <h6>NOMBRE:</h6>
+              
+              {% if profile.nombre %}<p>{{profile.nombre}}</p>{% endif %}
+              <h6>APELLIDO PATERNO:</h6>
+              {% if profile.apellido_p %}<p>{{profile.apellido_p}}</p>{% endif %}
+              <h6>APELLIDO MATERNO:</h6>
+              {% if profile.apellido_m %}<p>{{profile.apellido_m}}</p>{% endif %}
+
+              <h6>TELEFONO:</h6>
+              {% if profile.telefono %}<p>{{profile.telefono}}</a></p>{% endif %}
+              <h6>CURP:</h6>
+              {% if profile.curp %}<p>{{profile.curp}}</p>{% endif %}
+              <h6>INE:</h6>
+              {% if profile.ine %}<p>{{profile.ine}}</a></p>{% endif %}
+              <h6>DIRECCION:</h6>
+              {% if profile.direccion %}<p>{{profile.direccion}}</p>{% endif %}
+              <h6>PAIS:</h6>
+              {% if profile.pais %}<p>{{profile.pais}}</p>{% endif %}
+              <h6>ESTADO:</h6>
+              {% if profile.estado %}<p>{{profile.estado}}</p>{% endif %}
+              <h6>CIUDAD:</h6>
+              {% if profile.ciudad %}<p>{{profile.ciudad}}</p>{% endif %}
+
+
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</main>
+{% endblock %}

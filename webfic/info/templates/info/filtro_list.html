@@ -1,0 +1,72 @@
+
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}Informes{% endblock %}
+{% block content %}
+{% if  request.user.is_authenticated %}
+      {%include 'registration/includes/publication_menu.html'%}
+       {% endif %}
+
+
+
+
+
+<style>.profile-avatar{float:left;width:4rem;height:4rem}.profile-data{padding-left:4.5rem;padding-top:.4rem;}</style>
+<main role="main">
+  <div class="container bg-3">
+    <div class="row mt-3">
+      <div class="col-md-9 mx-auto mb-5">
+        <h2>Mis publicaciones</h2>
+        
+          <table class="table table-responsive table-bordered">
+    <thead>
+        <tr>
+            <th>NOMBRE DE USUARIO</th>
+            <th>TITULO</th>
+            <th>FECHA DE CREACIÓN</th>
+            <th>VER INFORME</th>
+            
+        </tr>
+    </thead>
+    
+
+    <b> {% for publication in publication_list %}</b><br>
+      {% with user.get_username|slugify as total %}
+             
+                 {% with publication.user|slugify as tot %}
+                     
+                     {% if total == tot %}
+    <tbody>
+        <tr>
+            <td>{{ publication.user }} </td>
+            <td>{{ publication.title }}</td>
+            <td>{{ publication.created }}</td>
+            <td><a href="{% url 'info:detail' publication.id %}">Ver Informe</td>
+           
+    
+        </tr>
+
+         {% else %}
+                     
+
+                       {% endif %}
+
+                  {% endwith %}
+                      
+                  {% endwith %}
+        
+    </tbody>
+    {% endfor %}
+
+</table>
+       
+         
+      </div>
+    </div>
+  </div>
+</main>
+
+{% endblock %}
+
+
+

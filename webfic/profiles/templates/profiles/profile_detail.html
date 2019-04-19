@@ -1,0 +1,121 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}{{profile.user}}{% endblock %}
+{% block content %}
+<head>
+  
+  <title>Bootstrap Theme Simply Me</title>
+ 
+
+ 
+ 
+
+  <style>
+  .bg-1 { 
+    background-color: #1abc9c; /* Green */
+    color: #ffffff;
+  }
+  .bg-2 { 
+    background-color: #474e5d; /* Dark Blue */
+    color: #ffffff;
+  }
+  .bg-3 { 
+    background-color: #fff; /* White */
+    color: #555555;
+  }
+  </style>
+</head>
+<body>
+
+<div class="container-fluid bg-1 text-center">
+  <h3>{% if profile.nombre %}<p>{{profile.nombre}} {% endif %}
+
+  {% if profile.apellido_p %} {{profile.apellido_p}} {% endif %}
+              
+              {% if profile.apellido_m %} {{profile.apellido_m}}</p>{% endif %}
+  {% if profile.avatar %}</h3>
+  <img src="{{profile.avatar.url}}" class="img-circle" alt="Bird" width="250" height="250">
+
+  {% else %}
+  <img src="{% static 'registration/img/no-avatar.jpg' %}" class="img-circle" alt="Bird" width="350" height="350">
+  {% endif %}
+
+  <h3>{% if profile.titulo %}<p>{{profile.titulo}}</p>{% endif %}</h3><br>
+
+<div class="container-fluid bg-2 text-center">
+
+ <h3>CONTACTO</h3>
+  <h4>Email</h4>
+  <p>{{user.email}}</p>
+  <h4>Telefono</h4>
+  <p>{% if profile.telefono %} {{profile.telefono}} {% endif %}</p>
+  <h4>Direccion</h4>
+  <p>{% if profile.direccion %} {{profile.direccion}}, {% endif %}
+  {% if profile.ciudad %} {{profile.ciudad}}, {% endif %}
+  {% if profile.estado %} {{profile.estado}}, {% endif %}
+  {% if profile.pais %} {{profile.pais}}. {% endif %}</p>
+  <h4>Fecha de nacimiento</h4>
+  <p>{% if profile.fecha_nac %} {{profile.fecha_nac}} {% endif %}</p><br>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+<div class="container-fluid bg-3 text-center">    
+  
+  <div class="row">
+    <div class="col-sm-4">
+      <h3>EXPERIENCIA</h3><br>
+      <p>{% if profile.exp %} {{profile.exp}} {% endif %}</p>
+
+
+        {% if profile.img_exp %}
+          <img src="{{profile.img_exp.url}}" class="img-circle" alt="Bird" width="250" height="250">
+
+          {% else %}
+        <img src="{% static 'registration/img/no-avatar.jpg' %}" class="img-circle" alt="Bird" width="250" height="250">
+        {% endif %}
+
+
+    
+    </div>
+    <div class="col-sm-4"> 
+      <h3>EDUCACION</h3><br>
+      <p>{% if profile.edu %} {{profile.edu}} {% endif %}</p>
+      {% if profile.img_exp %}
+          <img src="{{profile.img_edu.url}}" class="img-circle" alt="Bird" width="250" height="250">
+
+          {% else %}
+        <img src="{% static 'registration/img/no-avatar.jpg' %}" class="img-circle" alt="Bird" width="250" height="250">
+        {% endif %}
+    </div>
+    <div class="col-sm-4"> 
+      <h3>HABILIDADES</h3><br>
+      <p>{% if profile.hab %} {{profile.hab}} {% endif %}</p>
+       {% if profile.img_exp %}
+          <img src="{{profile.img_hab.url}}" class="img-circle" alt="Bird" width="250" height="250">
+
+          {% else %}
+        <img src="{% static 'registration/img/no-avatar.jpg' %}" class="img-circle" alt="Bird" width="250" height="250">
+        {% endif %}
+
+    </div>
+  </div>
+  <br>
+</div>
+<br>
+
+
+</div>
+
+<br>
+
+</body>
+{% endblock %}
